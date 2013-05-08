@@ -1,0 +1,2 @@
+aUT,bUT,aNV,bNV,aAZ,bAZ,aCO,bCO,
+(((((aNV & bNV) | (aCO & bCO)) => ~((aUT & bUT) | (aAZ & bAZ))) & ((aUT & bUT) => ~((aNV & bNV) | (aCO & bCO) | (aAZ & bAZ))) & ((aAZ & bAZ) => ~((aNV & bNV) | (aCO & bCO) | (aUT & bUT)))) & (aNV & bNV & aCO & bCO & ~aUT & bUT & aAZ & ~bAZ))

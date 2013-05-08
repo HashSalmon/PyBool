@@ -1,0 +1,39 @@
+Tyler Sorensen
+Oct 10, 2011
+
+This example solves the first Lewis Carroll puzzle as found on
+pg 125 of the book:
+
+Computation Engineering - applied automata theory and logic
+by Dr. Ganesh Gopalakrishnan
+
+This can be solved writing an appropriate boolean formula and 
+using a BDD. First lets consider the formula:
+
+The premises are:
+1. Babies are illogical;
+2. Nobody is despised who can manage a crocodile;
+3. Illogical persons are despised.
+
+and from these, we are to conclude that:
+Babies cannot manage crocodiles
+
+The premises can be encoded as the following boolean expressions:
+1. babies => illogical
+2. manageCrocs => ~despised
+3. illogical => despised
+
+Our Conclusion can be coded as:
+
+babies => ~manageCrocs
+
+Now to make sure all the premises are enforced, we 
+conjoin them all together to get:
+
+(babies => illogical) & (manageCrocs => ~despised) & (illogical => despised)
+
+From here, we can conjoin in the negation of our conclusion. Using this
+approach we can then use the BDD to look for 0 satisfying assignments.
+
+The final Boolean expression can be found in BabiesAndCrocs.txt
+and the simple BDD script can be found in runMe.py

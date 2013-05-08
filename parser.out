@@ -1,0 +1,548 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> VARORDER COLON variableList
+Rule 2     start -> VARIABLE ASSIGNOP expression
+Rule 3     start -> MAINEXP COLON expression
+Rule 4     start -> empty
+Rule 5     expression -> LPAREN expression RPAREN
+Rule 6     expression -> NOTOP expression
+Rule 7     expression -> expression ANDOP expression
+Rule 8     expression -> expression OROP expression
+Rule 9     expression -> expression XOROP expression
+Rule 10    expression -> expression IMPLIESOP expression
+Rule 11    expression -> expression EQOP expression
+Rule 12    expression -> VARIABLE
+Rule 13    expression -> CONST
+Rule 14    empty -> <empty>
+Rule 15    variableList -> variableList VARIABLE
+Rule 16    variableList -> VARIABLE
+
+Terminals, with rules where they appear
+
+ANDOP                : 7
+ASSIGNOP             : 2
+COLON                : 1 3
+CONST                : 13
+EQOP                 : 11
+IMPLIESOP            : 10
+LPAREN               : 5
+MAINEXP              : 3
+NOTOP                : 6
+OROP                 : 8
+RPAREN               : 5
+VARIABLE             : 2 12 15 16
+VARORDER             : 1
+XOROP                : 9
+error                : 
+
+Nonterminals, with rules where they appear
+
+empty                : 4
+expression           : 2 3 5 6 7 7 8 8 9 9 10 10 11 11
+start                : 0
+variableList         : 1 15
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . VARORDER COLON variableList
+    (2) start -> . VARIABLE ASSIGNOP expression
+    (3) start -> . MAINEXP COLON expression
+    (4) start -> . empty
+    (14) empty -> .
+
+    VARORDER        shift and go to state 2
+    VARIABLE        shift and go to state 4
+    MAINEXP         shift and go to state 1
+    $end            reduce using rule 14 (empty -> .)
+
+    start                          shift and go to state 3
+    empty                          shift and go to state 5
+
+state 1
+
+    (3) start -> MAINEXP . COLON expression
+
+    COLON           shift and go to state 6
+
+
+state 2
+
+    (1) start -> VARORDER . COLON variableList
+
+    COLON           shift and go to state 7
+
+
+state 3
+
+    (0) S' -> start .
+
+
+
+state 4
+
+    (2) start -> VARIABLE . ASSIGNOP expression
+
+    ASSIGNOP        shift and go to state 8
+
+
+state 5
+
+    (4) start -> empty .
+
+    $end            reduce using rule 4 (start -> empty .)
+
+
+state 6
+
+    (3) start -> MAINEXP COLON . expression
+    (5) expression -> . LPAREN expression RPAREN
+    (6) expression -> . NOTOP expression
+    (7) expression -> . expression ANDOP expression
+    (8) expression -> . expression OROP expression
+    (9) expression -> . expression XOROP expression
+    (10) expression -> . expression IMPLIESOP expression
+    (11) expression -> . expression EQOP expression
+    (12) expression -> . VARIABLE
+    (13) expression -> . CONST
+
+    LPAREN          shift and go to state 10
+    NOTOP           shift and go to state 9
+    VARIABLE        shift and go to state 11
+    CONST           shift and go to state 12
+
+    expression                     shift and go to state 13
+
+state 7
+
+    (1) start -> VARORDER COLON . variableList
+    (15) variableList -> . variableList VARIABLE
+    (16) variableList -> . VARIABLE
+
+    VARIABLE        shift and go to state 14
+
+    variableList                   shift and go to state 15
+
+state 8
+
+    (2) start -> VARIABLE ASSIGNOP . expression
+    (5) expression -> . LPAREN expression RPAREN
+    (6) expression -> . NOTOP expression
+    (7) expression -> . expression ANDOP expression
+    (8) expression -> . expression OROP expression
+    (9) expression -> . expression XOROP expression
+    (10) expression -> . expression IMPLIESOP expression
+    (11) expression -> . expression EQOP expression
+    (12) expression -> . VARIABLE
+    (13) expression -> . CONST
+
+    LPAREN          shift and go to state 10
+    NOTOP           shift and go to state 9
+    VARIABLE        shift and go to state 11
+    CONST           shift and go to state 12
+
+    expression                     shift and go to state 16
+
+state 9
+
+    (6) expression -> NOTOP . expression
+    (5) expression -> . LPAREN expression RPAREN
+    (6) expression -> . NOTOP expression
+    (7) expression -> . expression ANDOP expression
+    (8) expression -> . expression OROP expression
+    (9) expression -> . expression XOROP expression
+    (10) expression -> . expression IMPLIESOP expression
+    (11) expression -> . expression EQOP expression
+    (12) expression -> . VARIABLE
+    (13) expression -> . CONST
+
+    LPAREN          shift and go to state 10
+    NOTOP           shift and go to state 9
+    VARIABLE        shift and go to state 11
+    CONST           shift and go to state 12
+
+    expression                     shift and go to state 17
+
+state 10
+
+    (5) expression -> LPAREN . expression RPAREN
+    (5) expression -> . LPAREN expression RPAREN
+    (6) expression -> . NOTOP expression
+    (7) expression -> . expression ANDOP expression
+    (8) expression -> . expression OROP expression
+    (9) expression -> . expression XOROP expression
+    (10) expression -> . expression IMPLIESOP expression
+    (11) expression -> . expression EQOP expression
+    (12) expression -> . VARIABLE
+    (13) expression -> . CONST
+
+    LPAREN          shift and go to state 10
+    NOTOP           shift and go to state 9
+    VARIABLE        shift and go to state 11
+    CONST           shift and go to state 12
+
+    expression                     shift and go to state 18
+
+state 11
+
+    (12) expression -> VARIABLE .
+
+    ANDOP           reduce using rule 12 (expression -> VARIABLE .)
+    OROP            reduce using rule 12 (expression -> VARIABLE .)
+    XOROP           reduce using rule 12 (expression -> VARIABLE .)
+    IMPLIESOP       reduce using rule 12 (expression -> VARIABLE .)
+    EQOP            reduce using rule 12 (expression -> VARIABLE .)
+    $end            reduce using rule 12 (expression -> VARIABLE .)
+    RPAREN          reduce using rule 12 (expression -> VARIABLE .)
+
+
+state 12
+
+    (13) expression -> CONST .
+
+    ANDOP           reduce using rule 13 (expression -> CONST .)
+    OROP            reduce using rule 13 (expression -> CONST .)
+    XOROP           reduce using rule 13 (expression -> CONST .)
+    IMPLIESOP       reduce using rule 13 (expression -> CONST .)
+    EQOP            reduce using rule 13 (expression -> CONST .)
+    $end            reduce using rule 13 (expression -> CONST .)
+    RPAREN          reduce using rule 13 (expression -> CONST .)
+
+
+state 13
+
+    (3) start -> MAINEXP COLON expression .
+    (7) expression -> expression . ANDOP expression
+    (8) expression -> expression . OROP expression
+    (9) expression -> expression . XOROP expression
+    (10) expression -> expression . IMPLIESOP expression
+    (11) expression -> expression . EQOP expression
+
+    $end            reduce using rule 3 (start -> MAINEXP COLON expression .)
+    ANDOP           shift and go to state 21
+    OROP            shift and go to state 19
+    XOROP           shift and go to state 23
+    IMPLIESOP       shift and go to state 20
+    EQOP            shift and go to state 22
+
+
+state 14
+
+    (16) variableList -> VARIABLE .
+
+    VARIABLE        reduce using rule 16 (variableList -> VARIABLE .)
+    $end            reduce using rule 16 (variableList -> VARIABLE .)
+
+
+state 15
+
+    (1) start -> VARORDER COLON variableList .
+    (15) variableList -> variableList . VARIABLE
+
+    $end            reduce using rule 1 (start -> VARORDER COLON variableList .)
+    VARIABLE        shift and go to state 24
+
+
+state 16
+
+    (2) start -> VARIABLE ASSIGNOP expression .
+    (7) expression -> expression . ANDOP expression
+    (8) expression -> expression . OROP expression
+    (9) expression -> expression . XOROP expression
+    (10) expression -> expression . IMPLIESOP expression
+    (11) expression -> expression . EQOP expression
+
+    $end            reduce using rule 2 (start -> VARIABLE ASSIGNOP expression .)
+    ANDOP           shift and go to state 21
+    OROP            shift and go to state 19
+    XOROP           shift and go to state 23
+    IMPLIESOP       shift and go to state 20
+    EQOP            shift and go to state 22
+
+
+state 17
+
+    (6) expression -> NOTOP expression .
+    (7) expression -> expression . ANDOP expression
+    (8) expression -> expression . OROP expression
+    (9) expression -> expression . XOROP expression
+    (10) expression -> expression . IMPLIESOP expression
+    (11) expression -> expression . EQOP expression
+
+    ANDOP           reduce using rule 6 (expression -> NOTOP expression .)
+    OROP            reduce using rule 6 (expression -> NOTOP expression .)
+    XOROP           reduce using rule 6 (expression -> NOTOP expression .)
+    IMPLIESOP       reduce using rule 6 (expression -> NOTOP expression .)
+    EQOP            reduce using rule 6 (expression -> NOTOP expression .)
+    $end            reduce using rule 6 (expression -> NOTOP expression .)
+    RPAREN          reduce using rule 6 (expression -> NOTOP expression .)
+
+  ! ANDOP           [ shift and go to state 21 ]
+  ! OROP            [ shift and go to state 19 ]
+  ! XOROP           [ shift and go to state 23 ]
+  ! IMPLIESOP       [ shift and go to state 20 ]
+  ! EQOP            [ shift and go to state 22 ]
+
+
+state 18
+
+    (5) expression -> LPAREN expression . RPAREN
+    (7) expression -> expression . ANDOP expression
+    (8) expression -> expression . OROP expression
+    (9) expression -> expression . XOROP expression
+    (10) expression -> expression . IMPLIESOP expression
+    (11) expression -> expression . EQOP expression
+
+    RPAREN          shift and go to state 25
+    ANDOP           shift and go to state 21
+    OROP            shift and go to state 19
+    XOROP           shift and go to state 23
+    IMPLIESOP       shift and go to state 20
+    EQOP            shift and go to state 22
+
+
+state 19
+
+    (8) expression -> expression OROP . expression
+    (5) expression -> . LPAREN expression RPAREN
+    (6) expression -> . NOTOP expression
+    (7) expression -> . expression ANDOP expression
+    (8) expression -> . expression OROP expression
+    (9) expression -> . expression XOROP expression
+    (10) expression -> . expression IMPLIESOP expression
+    (11) expression -> . expression EQOP expression
+    (12) expression -> . VARIABLE
+    (13) expression -> . CONST
+
+    LPAREN          shift and go to state 10
+    NOTOP           shift and go to state 9
+    VARIABLE        shift and go to state 11
+    CONST           shift and go to state 12
+
+    expression                     shift and go to state 26
+
+state 20
+
+    (10) expression -> expression IMPLIESOP . expression
+    (5) expression -> . LPAREN expression RPAREN
+    (6) expression -> . NOTOP expression
+    (7) expression -> . expression ANDOP expression
+    (8) expression -> . expression OROP expression
+    (9) expression -> . expression XOROP expression
+    (10) expression -> . expression IMPLIESOP expression
+    (11) expression -> . expression EQOP expression
+    (12) expression -> . VARIABLE
+    (13) expression -> . CONST
+
+    LPAREN          shift and go to state 10
+    NOTOP           shift and go to state 9
+    VARIABLE        shift and go to state 11
+    CONST           shift and go to state 12
+
+    expression                     shift and go to state 27
+
+state 21
+
+    (7) expression -> expression ANDOP . expression
+    (5) expression -> . LPAREN expression RPAREN
+    (6) expression -> . NOTOP expression
+    (7) expression -> . expression ANDOP expression
+    (8) expression -> . expression OROP expression
+    (9) expression -> . expression XOROP expression
+    (10) expression -> . expression IMPLIESOP expression
+    (11) expression -> . expression EQOP expression
+    (12) expression -> . VARIABLE
+    (13) expression -> . CONST
+
+    LPAREN          shift and go to state 10
+    NOTOP           shift and go to state 9
+    VARIABLE        shift and go to state 11
+    CONST           shift and go to state 12
+
+    expression                     shift and go to state 28
+
+state 22
+
+    (11) expression -> expression EQOP . expression
+    (5) expression -> . LPAREN expression RPAREN
+    (6) expression -> . NOTOP expression
+    (7) expression -> . expression ANDOP expression
+    (8) expression -> . expression OROP expression
+    (9) expression -> . expression XOROP expression
+    (10) expression -> . expression IMPLIESOP expression
+    (11) expression -> . expression EQOP expression
+    (12) expression -> . VARIABLE
+    (13) expression -> . CONST
+
+    LPAREN          shift and go to state 10
+    NOTOP           shift and go to state 9
+    VARIABLE        shift and go to state 11
+    CONST           shift and go to state 12
+
+    expression                     shift and go to state 29
+
+state 23
+
+    (9) expression -> expression XOROP . expression
+    (5) expression -> . LPAREN expression RPAREN
+    (6) expression -> . NOTOP expression
+    (7) expression -> . expression ANDOP expression
+    (8) expression -> . expression OROP expression
+    (9) expression -> . expression XOROP expression
+    (10) expression -> . expression IMPLIESOP expression
+    (11) expression -> . expression EQOP expression
+    (12) expression -> . VARIABLE
+    (13) expression -> . CONST
+
+    LPAREN          shift and go to state 10
+    NOTOP           shift and go to state 9
+    VARIABLE        shift and go to state 11
+    CONST           shift and go to state 12
+
+    expression                     shift and go to state 30
+
+state 24
+
+    (15) variableList -> variableList VARIABLE .
+
+    VARIABLE        reduce using rule 15 (variableList -> variableList VARIABLE .)
+    $end            reduce using rule 15 (variableList -> variableList VARIABLE .)
+
+
+state 25
+
+    (5) expression -> LPAREN expression RPAREN .
+
+    ANDOP           reduce using rule 5 (expression -> LPAREN expression RPAREN .)
+    OROP            reduce using rule 5 (expression -> LPAREN expression RPAREN .)
+    XOROP           reduce using rule 5 (expression -> LPAREN expression RPAREN .)
+    IMPLIESOP       reduce using rule 5 (expression -> LPAREN expression RPAREN .)
+    EQOP            reduce using rule 5 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 5 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 5 (expression -> LPAREN expression RPAREN .)
+
+
+state 26
+
+    (8) expression -> expression OROP expression .
+    (7) expression -> expression . ANDOP expression
+    (8) expression -> expression . OROP expression
+    (9) expression -> expression . XOROP expression
+    (10) expression -> expression . IMPLIESOP expression
+    (11) expression -> expression . EQOP expression
+
+    OROP            reduce using rule 8 (expression -> expression OROP expression .)
+    XOROP           reduce using rule 8 (expression -> expression OROP expression .)
+    IMPLIESOP       reduce using rule 8 (expression -> expression OROP expression .)
+    EQOP            reduce using rule 8 (expression -> expression OROP expression .)
+    $end            reduce using rule 8 (expression -> expression OROP expression .)
+    RPAREN          reduce using rule 8 (expression -> expression OROP expression .)
+    ANDOP           shift and go to state 21
+
+  ! ANDOP           [ reduce using rule 8 (expression -> expression OROP expression .) ]
+  ! OROP            [ shift and go to state 19 ]
+  ! XOROP           [ shift and go to state 23 ]
+  ! IMPLIESOP       [ shift and go to state 20 ]
+  ! EQOP            [ shift and go to state 22 ]
+
+
+state 27
+
+    (10) expression -> expression IMPLIESOP expression .
+    (7) expression -> expression . ANDOP expression
+    (8) expression -> expression . OROP expression
+    (9) expression -> expression . XOROP expression
+    (10) expression -> expression . IMPLIESOP expression
+    (11) expression -> expression . EQOP expression
+
+    EQOP            reduce using rule 10 (expression -> expression IMPLIESOP expression .)
+    $end            reduce using rule 10 (expression -> expression IMPLIESOP expression .)
+    RPAREN          reduce using rule 10 (expression -> expression IMPLIESOP expression .)
+    ANDOP           shift and go to state 21
+    OROP            shift and go to state 19
+    XOROP           shift and go to state 23
+    IMPLIESOP       shift and go to state 20
+
+  ! ANDOP           [ reduce using rule 10 (expression -> expression IMPLIESOP expression .) ]
+  ! OROP            [ reduce using rule 10 (expression -> expression IMPLIESOP expression .) ]
+  ! XOROP           [ reduce using rule 10 (expression -> expression IMPLIESOP expression .) ]
+  ! IMPLIESOP       [ reduce using rule 10 (expression -> expression IMPLIESOP expression .) ]
+  ! EQOP            [ shift and go to state 22 ]
+
+
+state 28
+
+    (7) expression -> expression ANDOP expression .
+    (7) expression -> expression . ANDOP expression
+    (8) expression -> expression . OROP expression
+    (9) expression -> expression . XOROP expression
+    (10) expression -> expression . IMPLIESOP expression
+    (11) expression -> expression . EQOP expression
+
+    ANDOP           reduce using rule 7 (expression -> expression ANDOP expression .)
+    OROP            reduce using rule 7 (expression -> expression ANDOP expression .)
+    XOROP           reduce using rule 7 (expression -> expression ANDOP expression .)
+    IMPLIESOP       reduce using rule 7 (expression -> expression ANDOP expression .)
+    EQOP            reduce using rule 7 (expression -> expression ANDOP expression .)
+    $end            reduce using rule 7 (expression -> expression ANDOP expression .)
+    RPAREN          reduce using rule 7 (expression -> expression ANDOP expression .)
+
+  ! ANDOP           [ shift and go to state 21 ]
+  ! OROP            [ shift and go to state 19 ]
+  ! XOROP           [ shift and go to state 23 ]
+  ! IMPLIESOP       [ shift and go to state 20 ]
+  ! EQOP            [ shift and go to state 22 ]
+
+
+state 29
+
+    (11) expression -> expression EQOP expression .
+    (7) expression -> expression . ANDOP expression
+    (8) expression -> expression . OROP expression
+    (9) expression -> expression . XOROP expression
+    (10) expression -> expression . IMPLIESOP expression
+    (11) expression -> expression . EQOP expression
+
+    $end            reduce using rule 11 (expression -> expression EQOP expression .)
+    RPAREN          reduce using rule 11 (expression -> expression EQOP expression .)
+    ANDOP           shift and go to state 21
+    OROP            shift and go to state 19
+    XOROP           shift and go to state 23
+    IMPLIESOP       shift and go to state 20
+    EQOP            shift and go to state 22
+
+  ! ANDOP           [ reduce using rule 11 (expression -> expression EQOP expression .) ]
+  ! OROP            [ reduce using rule 11 (expression -> expression EQOP expression .) ]
+  ! XOROP           [ reduce using rule 11 (expression -> expression EQOP expression .) ]
+  ! IMPLIESOP       [ reduce using rule 11 (expression -> expression EQOP expression .) ]
+  ! EQOP            [ reduce using rule 11 (expression -> expression EQOP expression .) ]
+
+
+state 30
+
+    (9) expression -> expression XOROP expression .
+    (7) expression -> expression . ANDOP expression
+    (8) expression -> expression . OROP expression
+    (9) expression -> expression . XOROP expression
+    (10) expression -> expression . IMPLIESOP expression
+    (11) expression -> expression . EQOP expression
+
+    XOROP           reduce using rule 9 (expression -> expression XOROP expression .)
+    IMPLIESOP       reduce using rule 9 (expression -> expression XOROP expression .)
+    EQOP            reduce using rule 9 (expression -> expression XOROP expression .)
+    $end            reduce using rule 9 (expression -> expression XOROP expression .)
+    RPAREN          reduce using rule 9 (expression -> expression XOROP expression .)
+    ANDOP           shift and go to state 21
+    OROP            shift and go to state 19
+
+  ! ANDOP           [ reduce using rule 9 (expression -> expression XOROP expression .) ]
+  ! OROP            [ reduce using rule 9 (expression -> expression XOROP expression .) ]
+  ! XOROP           [ shift and go to state 23 ]
+  ! IMPLIESOP       [ shift and go to state 20 ]
+  ! EQOP            [ shift and go to state 22 ]
+
