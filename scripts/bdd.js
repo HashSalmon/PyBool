@@ -52,14 +52,14 @@ function loadPageCallback(result) {
  */
 function previousFormula() {
 	
-	// decrement index
-	index--;
-	
-	// save the file name
-	var name = fileName[index];
-	
 	// prevent array out of bound
 	if (index >= 1) {
+		// decrement index
+		index--;
+		
+		// save the file name
+		var name = fileName[index];
+		
 		$.get("previousFormula.php", {fileName: name},previousFormulaCallback);
 	}
 	else {
@@ -81,14 +81,16 @@ function previousFormulaCallback(result) {
  * textarea
  */
 function nextFormula() {
-	// increment index
-	index++;
-	
-	// save the file name
-	var name = fileName[index];
 	
 	// prevent array out of bound
-	if (index <= 6) {
+	if (index < 5) {
+		
+		// increment index
+		index++;
+		
+		// save the file name
+		var name = fileName[index];
+		
 		$.get("nextFormula.php", {fileName: name},nextFormulaCallback);
 	}
 	else {
@@ -108,20 +110,34 @@ function nextFormulaCallback(result) {
  * call a python script and generate a graph
  */
 function buildBDD() {
-	$.get("buildBDD.php", buildBDDCallback);
+	
+	// save the formula in the formula area
+	var fileContent = $('.formulaArea').val();
+	
+	$.get("buildBDD.php",{file: fileContent}, buildBDDCallback);
 }
 
 
 function buildBDDCallback(result) {
-	
+	alert(result);
 	// get flag
 	var flag = result[0];
-	
+
+	// a time out message will be show on the output 
+	if (flag == "timeOut") {
+		var output = result[1];
+
+		// paste to output area
+		$('.outputArea').val(output);
+	}
 	// if flag is false, an error.txt was generated
-	if (!flag) {
+	else if (!flag) {
 		// save the content
 		var fileContent = result[1];
-
+		
+		// clear the image
+		$('.imageArea').attr('src', "#");
+		
 		// paste to output area
 		$('.outputArea').val(fileContent);
 	}
@@ -134,16 +150,52 @@ function buildBDDCallback(result) {
 		// paste the image and output
 		$('.imageArea').attr('src', imageUrl);
 		$('.outputArea').val(fileContent);
-	}
-	
-	
+	}	
 }
 
 /*
  * call a python script and generate a graph
  */
 function buildMinimumBDD() {
-	alert("min bdd");
+	// save the formula in the formula area
+	var fileContent = $('.formulaArea').val();
+	
+	$.get("buildMinimumBDD.php",{file: fileContent}, buildMinimumBDDCallback);
+}
+
+function buildMinimumBDDCallback(result) {
+	alert(result);
+	// get flag
+	var flag = result[0];
+
+	// a time out message will be show on the output 
+	if (flag == "timeOut") {
+		var output = result[1];
+
+		// paste to output area
+		$('.outputArea').val(output);
+	}
+	// if flag is false, an error.txt was generated
+	else if (!flag) {
+		// save the content
+		var fileContent = result[1];
+		
+		// clear the image
+		$('.imageArea').attr('src', "#");
+		
+		// paste to output area
+		$('.outputArea').val(fileContent);
+	}
+	// if flag is true, an output.txt and an image were generated
+	else {
+		// save image url and file content
+		var imageUrl = result[1];
+		var fileContent = result[2];
+		
+		// paste the image and output
+		$('.imageArea').attr('src', imageUrl);
+		$('.outputArea').val(fileContent);
+	}	
 }
 
 
