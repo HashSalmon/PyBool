@@ -111,6 +111,9 @@ function nextFormulaCallback(result) {
  */
 function buildBDD() {
 	
+	// change the text to building
+	$('#buildBDD').text("Building...");
+	
 	// save the formula in the formula area
 	var fileContent = $('.formulaArea').val();
 	
@@ -119,7 +122,9 @@ function buildBDD() {
 
 
 function buildBDDCallback(result) {
-	alert(result);
+	// change the text back
+	$('#buildBDD').text("Build BDD");
+	
 	// get flag
 	var flag = result[0];
 
@@ -157,6 +162,10 @@ function buildBDDCallback(result) {
  * call a python script and generate a graph
  */
 function buildMinimumBDD() {
+	
+	// change the text to building
+	$('#buildMinimumBDD').text("Building...");
+	
 	// save the formula in the formula area
 	var fileContent = $('.formulaArea').val();
 	
@@ -164,7 +173,10 @@ function buildMinimumBDD() {
 }
 
 function buildMinimumBDDCallback(result) {
-	alert(result);
+	
+	// change the text to building
+	$('#buildMinimumBDD').text("Build minimum BDD");
+	
 	// get flag
 	var flag = result[0];
 
