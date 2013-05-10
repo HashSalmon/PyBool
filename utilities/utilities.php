@@ -37,4 +37,18 @@ function deleteOldImages()
 	}
 }
 
+/*
+ * count the visitors
+ */
+function incrementCounter($filename)
+{
+	$file = fopen($filename, "r");
+	$visits = fgets($file);
+	fclose($file);
+	//echo "Visits: $visits";
+	$file = fopen($filename, "w");
+	fputs($file, $visits + 1);
+	fclose($file);
+}
+
 ?>

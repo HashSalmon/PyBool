@@ -21,10 +21,10 @@
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active"><a href="index.php">About</a></li>
-						<li><a href="pybool.php">PBL Interface</a></li>
+						<li><a href="PBL.php">PBL Interface</a></li>
 						<li><a href="BDD.php">BDD Interface</a></li>
 						<li><a>Download</a></li>
-						<li><a>People</a></li>
+						<li><a href="people.php">People</a></li>
 						<li><a href="http://www.cs.utah.edu/formal_verification/">Gauss Group</a></li>
 					</ul>
 				</div>
@@ -41,9 +41,10 @@
 		or some text input boxes with buttons etc. I'm not too concerned about the layout here
 		</P>
 		</div>
-		
-		<footer>
-			<p>Tyler's By Pool</p>
+		<footer>		
+			<p><strong>Please email questions, comments or bugs to Tyler Sorensen<br>
+			ALSO IF YOU FIND THIS SITE USEFUL PLEASE LET US KNOW! YOUR FEEDBACK HELPS US TO IMPROVE AND MAINTAIN THIS SITE<br>
+			t.sorensen@utah.edu</strong></p>		
 		</footer>
 	</div>
 </body>

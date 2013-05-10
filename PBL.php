@@ -3,12 +3,12 @@
 require 'utilities/utilities.php';
 
 // file path
-$filePath = "C:/Users/Kingsley/cs4540/PyBool/python/count/bddCount.txt";
+$filePath = "C:/Users/Kingsley/cs4540/PyBool/python/count/pblCount.txt";
 
 // record visit count
 incrementCounter($filePath);
 
-// require view BDD
-require 'views/BDD.php';
+// require view pybool
+require 'views/PBL.php';
 
 ?>

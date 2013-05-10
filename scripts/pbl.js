@@ -4,24 +4,23 @@ $(function(){
 	index = 0;
 	
 	// previous button handler
-	$("#previous").click(function(){previousFormula();});
+	$("#PBLPrevious").click(function(){previousFormula();});
 	
 	// next button handler
-	$("#next").click(function(){nextFormula();});
+	$("#PBLNext").click(function(){nextFormula();});
 	
-	// buildBDD button handler
-	$("#buildBDD").click(function(){buildBDD();});
+	// convert to NNE button handler
+	$("#convertToNNE").click(function(){convertToNNE();});
 	
-	// buildMinimumBDD button handler
-	$("#buildMinimumBDD").click(function(){buildMinimumBDD();});
+	// convert to CNF button handler
+	$("#convertToCNF").click(function(){convertToCNF();});
 
 	// call load page
 	loadPage();
 });
 
 // all files in the server side
-var fileName = ["example1", "example2", "example3",
-		"example4", "example5", "example6"];
+var fileName = ["example1", "example2", "example3"];
 
 // file index
 var index = 0;
@@ -34,7 +33,7 @@ function loadPage() {
 	var name = fileName[index];
 
 	// ajax call. call loadpage.php to read file content
-	$.get("loadPage.php", {fileName: name},loadPageCallback);
+	$.get("pblLoadPage.php", {fileName: name},loadPageCallback);
 }
 
 /*
@@ -42,7 +41,7 @@ function loadPage() {
  *  the screen
  */ 
 function loadPageCallback(result) {
-	$('.formulaArea').val(result);
+	$('.PBLFormulaArea').val(result);
 }
 
 /*
@@ -60,7 +59,7 @@ function previousFormula() {
 		// save the file name
 		var name = fileName[index];
 		
-		$.get("previousFormula.php", {fileName: name},previousFormulaCallback);
+		$.get("pblPreviousFormula.php", {fileName: name},previousFormulaCallback);
 	}
 	else {
 		alert("No more examples!");
@@ -72,7 +71,7 @@ function previousFormula() {
  * It will show paste the content on the screen
  */ 
 function previousFormulaCallback(result) {
-	$('.formulaArea').val(result);
+	$('.PBLFormulaArea').val(result);
 }
 
 /*
@@ -83,7 +82,7 @@ function previousFormulaCallback(result) {
 function nextFormula() {
 	
 	// prevent array out of bound
-	if (index < fileName.length) {
+	if (index < fileName.length-1) {
 		
 		// increment index
 		index++;
@@ -91,7 +90,7 @@ function nextFormula() {
 		// save the file name
 		var name = fileName[index];
 		
-		$.get("nextFormula.php", {fileName: name},nextFormulaCallback);
+		$.get("pblNextFormula.php", {fileName: name},nextFormulaCallback);
 	}
 	else {
 		alert("No more examples!");
@@ -103,27 +102,27 @@ function nextFormula() {
  * It will show paste the content on the screen
  */ 
 function nextFormulaCallback(result) {
-	$('.formulaArea').val(result);
+	$('.PBLFormulaArea').val(result);
 }
 
 /*
  * call a python script and generate a graph
  */
-function buildBDD() {
+function convertToNNE() {
 	
 	// change the text to building
-	$('#buildBDD').text("Building...");
+	$('#convertToNNE').text("Converting...");
 	
 	// save the formula in the formula area
-	var fileContent = $('.formulaArea').val();
+	var fileContent = $('.PBLFormulaArea').val();
 	
-	$.get("buildBDD.php",{file: fileContent}, buildBDDCallback);
+	$.get("convertToNNE.php",{file: fileContent}, convertToNNECallback);
 }
 
 
-function buildBDDCallback(result) {
+function convertToNNECallback(result) {
 	// change the text back
-	$('#buildBDD').text("Build BDD");
+	$('#convertToNNE').text("Convert To NNE");
 	
 	// get flag
 	var flag = result[0];
@@ -133,7 +132,7 @@ function buildBDDCallback(result) {
 		var output = result[1];
 
 		// paste to output area
-		$('.outputArea').val(output);
+		$('.PBLOutputArea').val(output);
 	}
 	// if flag is false, an error.txt was generated
 	else if (!flag) {
@@ -141,10 +140,10 @@ function buildBDDCallback(result) {
 		var fileContent = result[1];
 		
 		// clear the image
-		$('.imageArea').attr('src', "#");
+		//$('.imageArea').attr('src', "#");
 		
 		// paste to output area
-		$('.outputArea').val(fileContent);
+		$('.PBLOutputArea').val(fileContent);
 	}
 	// if flag is true, an output.txt and an image were generated
 	else {
@@ -153,29 +152,29 @@ function buildBDDCallback(result) {
 		var fileContent = result[2];
 		
 		// paste the image and output
-		$('.imageArea').attr('src', imageUrl);
-		$('.outputArea').val(fileContent);
+		//$('.imageArea').attr('src', imageUrl);
+		$('.PBLOutputArea').val(fileContent);
 	}	
 }
 
 /*
  * call a python script and generate a graph
  */
-function buildMinimumBDD() {
+function convertToCNF() {
 	
 	// change the text to building
-	$('#buildMinimumBDD').text("Building...");
+	$('#convertToCNF').text("Converting...");
 	
 	// save the formula in the formula area
-	var fileContent = $('.formulaArea').val();
+	var fileContent = $('.PBLFormulaArea').val();
 	
-	$.get("buildMinimumBDD.php",{file: fileContent}, buildMinimumBDDCallback);
+	$.get("convertToCNF.php",{file: fileContent}, convertToCNFCallback);
 }
 
-function buildMinimumBDDCallback(result) {
+function convertToCNFCallback(result) {
 	
 	// change the text to building
-	$('#buildMinimumBDD').text("Build minimum BDD");
+	$('#convertToCNF').text("Convert To CNF");
 	
 	// get flag
 	var flag = result[0];
@@ -185,7 +184,7 @@ function buildMinimumBDDCallback(result) {
 		var output = result[1];
 
 		// paste to output area
-		$('.outputArea').val(output);
+		$('.PBLOutputArea').val(output);
 	}
 	// if flag is false, an error.txt was generated
 	else if (!flag) {
@@ -193,10 +192,10 @@ function buildMinimumBDDCallback(result) {
 		var fileContent = result[1];
 		
 		// clear the image
-		$('.imageArea').attr('src', "#");
+		//$('.imageArea').attr('src', "#");
 		
 		// paste to output area
-		$('.outputArea').val(fileContent);
+		$('.PBLOutputArea').val(fileContent);
 	}
 	// if flag is true, an output.txt and an image were generated
 	else {
@@ -205,8 +204,8 @@ function buildMinimumBDDCallback(result) {
 		var fileContent = result[2];
 		
 		// paste the image and output
-		$('.imageArea').attr('src', imageUrl);
-		$('.outputArea').val(fileContent);
+		//$('.imageArea').attr('src', imageUrl);
+		$('.PBLOutputArea').val(fileContent);
 	}	
 }
 

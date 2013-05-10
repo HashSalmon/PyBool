@@ -6193,6 +6193,22 @@ a.badge:focus {
     resize:none;
 }
 
+.PBLFormulaArea {
+    width:480px;
+    height: 430px;
+    padding: 3px;
+    border: none;
+    resize:none;
+}
+
+.PBLOutputArea {
+	width:450px;
+	height: 430px;
+    padding: 3px;
+    border: none;
+    resize:none;
+}
+
 .imageArea {
 	text-align:center
 }
