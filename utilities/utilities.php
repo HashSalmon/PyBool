@@ -51,4 +51,18 @@ function incrementCounter($filename)
 	fclose($file);
 }
 
+/*
+ * Open a file and save the name and organization to the file
+ */
+function nameAndOrganization($fileName, $visitorName, $organization)
+{
+	date_default_timezone_set('America/Denver');
+	// get the current time of the server
+	$currentTime = date("l jS \of F Y h:i:s A");
+	
+	$file = fopen($fileName, "a");
+	$append = $visitorName . ", " . $organization . ", ". $currentTime . "\n";
+	fputs($file, $append);
+	fclose($file);
+}
 ?>

@@ -111,17 +111,27 @@ function nextFormulaCallback(result) {
  */
 function buildBDD() {
 	
-	// change the text to building
-	$('#buildBDD').text("Building...");
+	// get the content
+	var formula = $(".formulaArea").val();
 	
-	// save the formula in the formula area
-	var fileContent = $('.formulaArea').val();
-	
-	$.get("buildBDD.php",{file: fileContent}, buildBDDCallback);
+	// if the length is less than 1000 characters, pop up an window to tell the user
+	if (formula.length <= 1500) {
+		// change the text to building
+		$('#buildBDD').text("Building...");
+		
+		// save the formula in the formula area
+		var fileContent = $('.formulaArea').val();
+		
+		$.get("buildBDD.php",{file: fileContent}, buildBDDCallback);
+	}
+	else {
+		alert("Formulas for the web interface must be under 1500 characters");
+	}
 }
 
 
 function buildBDDCallback(result) {
+
 	// change the text back
 	$('#buildBDD').text("Build BDD");
 	
@@ -163,13 +173,22 @@ function buildBDDCallback(result) {
  */
 function buildMinimumBDD() {
 	
-	// change the text to building
-	$('#buildMinimumBDD').text("Building...");
+	// get the content
+	var formula = $(".formulaArea").val();
 	
-	// save the formula in the formula area
-	var fileContent = $('.formulaArea').val();
-	
-	$.get("buildMinimumBDD.php",{file: fileContent}, buildMinimumBDDCallback);
+	// if the length is less than 1000 characters, pop up an window to tell the user
+	if (formula.length <= 1500) {
+		// change the text to building
+		$('#buildMinimumBDD').text("Building...");
+		
+		// save the formula in the formula area
+		var fileContent = $('.formulaArea').val();
+		
+		$.get("buildMinimumBDD.php",{file: fileContent}, buildMinimumBDDCallback);
+	}
+	else {
+		alert("Formulas for the web interface must be under 1500 characters");
+	}
 }
 
 function buildMinimumBDDCallback(result) {

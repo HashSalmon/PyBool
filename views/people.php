@@ -15,18 +15,13 @@
 				<a class="brand" href="index.php">PBL</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a href="index.php">About</a>
-						</li>
-						<li><a href="PBL.php">PBL Interface</a>
-						</li>
-						<li><a href="BDD.php">BDD Interface</a>
-						</li>
-						<li><a>Download</a>
-						</li>
-						<li  class="active"><a href="people.php">People</a>
-						</li>
-						<li><a href="http://www.cs.utah.edu/formal_verification/">Gauss Group</a>
-						</li>
+						<li><a href="index.php">About</a></li>
+						<li><a href="PBL.php">PBL Interface</a></li>
+						<li><a href="BDD.php">BDD Interface</a></li>
+						<li><a href="Download.php">Download</a>
+						<li  class="active"><a href="people.php">People</a></li>
+						<li><a href="http://www.cs.utah.edu/formal_verification/">Gauss Group</a></li>
+						<li><a href="http://www.utah.edu">The University Of Utah</a></li>		
 					</ul>
 				</div>
 			</div>
@@ -63,6 +58,11 @@
 		<dl>
 		<dt class="text-info">Bruce Bolick:</dt>
 		<dd class="text-error">bruce.bolick@utah.edu</dd>
+		</dl>
+		
+		<dl>
+		<dt class="text-info">Mohammed S. Al-Mahfoudh:</dt>
+		<dd class="text-error">mohammed.mahfoudh@gmail.com</dd>
 		</dl>
 
 		<h4>BDD Minimization by:</h4>

@@ -13,7 +13,7 @@ $id = uniqid();
 $fileContent = $_REQUEST['file'];
 
 // the path of generated uniquid.txt
-$uniqidTxt = "C:/Users/Kingsley/cs4540/PyBool/python/".$id.".txt";
+$uniqidTxt = "C:/Users/Kingsley/cs4540/PyBool/python/programoutput/".$id.".txt";
 
 // generate a uniqid.txt file on the server
 generateUniqidTxt($uniqidTxt, $fileContent);
@@ -34,9 +34,8 @@ unlink($uniqidTxt);
 if ($output == 124)
 {
 	// path of files
-	$errorTxt = "";
-	$uniqidDot = "";
-	$uniqidPng = "";
+	$errorTxt = "C:/Users/Kingsley/cs4540/PyBool/python/programoutput/error".$id.".txt";
+	$programOutput = "C:/Users/Kingsley/cs4540/PyBool/python/programoutput/programoutput".$id.".txt";
 	
 	$data = array();
 	
@@ -48,17 +47,17 @@ if ($output == 124)
 	// put error output to the array
 	array_push($data, $errorOutput);
 	
-	// remove uniqid.txt
-	unlink($uniqidTxt);
+	// check to see if the files exist
+	if (file_exists($errorTxt))
+	{
+		// remove error.txt
+		unlink($errorTxt);
+	}
 	
-	// remove error.txt
-	unlink($errorTxt);
-	
-	// remove uniqid.dot
-	unlink($uniqidDot);
-	
-	// remove uniqid.png
-	unlink($uniqidPng);
+	if (file_exists($programOutput))
+	{
+		unlink($programOutput);
+	}
 	
 	// The JSON standard MIME header.
 	header('Content-type: application/json');
@@ -67,13 +66,13 @@ if ($output == 124)
 else
 {
 	// file path
-	$errorTxt = "C:/Users/Kingsley/cs4540/PyBool/python/error".$id.".txt";
+	$errorTxt = "C:/Users/Kingsley/cs4540/PyBool/python/programoutput/error".$id.".txt";
 	
 	// image path
 	$image =  "python\\images\\".$id.".png";
 	
 	// output.txt path
-	$outputTxt = "C:/Users/Kingsley/cs4540/PyBool/python/programoutput".$id.".txt";
+	$outputTxt = "C:/Users/Kingsley/cs4540/PyBool/python/programoutput/programoutput".$id.".txt";
 	
 	// array to save the result
 	$data = array();

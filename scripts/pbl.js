@@ -110,13 +110,22 @@ function nextFormulaCallback(result) {
  */
 function convertToNNE() {
 	
-	// change the text to building
-	$('#convertToNNE').text("Converting...");
+	// get the content
+	var formula = $(".PBLFormulaArea").val();
 	
-	// save the formula in the formula area
-	var fileContent = $('.PBLFormulaArea').val();
-	
-	$.get("convertToNNE.php",{file: fileContent}, convertToNNECallback);
+	// if the length is less than 1000 characters, pop up an window to tell the user
+	if (formula.length <= 1500) {
+		// change the text to building
+		$('#convertToNNE').text("Converting...");
+		
+		// save the formula in the formula area
+		var fileContent = $('.PBLFormulaArea').val();
+		
+		$.get("convertToNNE.php",{file: fileContent}, convertToNNECallback);
+	}
+	else {
+		alert("Formulas for the web interface must be under 1500 characters");
+	}
 }
 
 
@@ -162,13 +171,24 @@ function convertToNNECallback(result) {
  */
 function convertToCNF() {
 	
-	// change the text to building
-	$('#convertToCNF').text("Converting...");
+	// get the content
+	var formula = $(".PBLFormulaArea").val();
 	
-	// save the formula in the formula area
-	var fileContent = $('.PBLFormulaArea').val();
-	
-	$.get("convertToCNF.php",{file: fileContent}, convertToCNFCallback);
+	// if the length is less than 1000 characters, pop up an window to tell the user
+	if (formula.length <= 1500) {
+		
+		// change the text to building
+		$('#convertToCNF').text("Converting...");
+		
+		// save the formula in the formula area
+		var fileContent = $('.PBLFormulaArea').val();
+		
+		$.get("convertToCNF.php",{file: fileContent}, convertToCNFCallback);
+	}
+	else {
+		alert("Formulas for the web interface must be under 1500 characters");
+	}
+
 }
 
 function convertToCNFCallback(result) {

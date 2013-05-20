@@ -19,7 +19,7 @@ ERR_str = ""
 STAT_str = ""
 
 def exit_err():
-    f = open("python/error" + uniqid + ".txt", "w")
+    f = open("python/programoutput/error" + uniqid + ".txt", "w")
     f.write(ERR_str)
     f.close()
     exit(0)
@@ -28,7 +28,7 @@ def exit_err():
 if __name__ == "__main__":
    
     try:
-        bdd = BDD.bdd_init("python/" + uniqid + ".txt")
+        bdd = BDD.bdd_init("python/programoutput/" + uniqid + ".txt")
         
     except pb.Parse_Error as e:
         ERR_str = "There was an error parsing your file, please check your syntax\n" \
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     for x in sat_assigns:        
         sat_assigns_string += str(map(lambda y : 0 if '~' in y else 1, x)) + '\n'
     
-    dot_file = "python\\" + uniqid + ".dot"
+    dot_file = "python/programoutput/" + uniqid + ".dot"
     BDD.dot_bdd(bdd, dot_file)
     #print reduce(lambda x, y : x + " " + y, [dot_PATH, dot_ARGS, dot_file, dot_OUT])
     err = os.system(reduce(lambda x, y : x + " " + y, [dot_PATH, dot_ARGS, dot_file, dot_OUT]))
@@ -68,6 +68,6 @@ if __name__ == "__main__":
                 + stats + "\n\nAll satisfying assignts:\n" + "------------------------------\n"\
                 + sat_assigns_string
     
-    f = open("python/programoutput" + uniqid + ".txt", "w")
+    f = open("python/programoutput/programoutput" + uniqid + ".txt", "w")
     f.write(STAT_str)
     f.close()

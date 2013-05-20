@@ -13,7 +13,7 @@ ERR_str = ""
 STAT_str = ""
 
 def exit_err():
-    f = open("python/error" + uniqid + ".txt", "w")
+    f = open("python/programoutput/error" + uniqid + ".txt", "w")
     f.write(ERR_str)
     f.close()
     exit(0)
@@ -21,7 +21,7 @@ def exit_err():
 if __name__ == "__main__":
 
     try:
-        expr = pb.parse_std("python/" + uniqid + ".txt")["main_expr"]    
+        expr = pb.parse_std("python/programoutput/" + uniqid + ".txt")["main_expr"]    
         
     except pb.Parse_Error as e:
         ERR_str = "There was an error parsing your file, please check your syntax\n" \
@@ -40,6 +40,6 @@ if __name__ == "__main__":
     expr = pb.exp_cnf(expr)
     STAT_str = pb.print_expr(expr) + "\n"
     
-    f = open("python/programoutput" + uniqid + ".txt", "w")
+    f = open("python/programoutput/programoutput" + uniqid + ".txt", "w")
     f.write(STAT_str)
     f.close()
